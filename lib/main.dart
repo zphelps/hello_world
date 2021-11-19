@@ -4,18 +4,22 @@ import 'package:hello_world/dog_model.dart';
 import 'package:hello_world/user_profile.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    home: AnimalList(),
+  runApp(MaterialApp(
+    // home: AnimalList(),
+    initialRoute: '/',
+    routes: {
+      '/': (context) => AnimalList(),
+      '/animalProfile': (context) => AnimalProfile(),
+    },
   ));
 }
 
 class AnimalProfile extends StatelessWidget {
-  const AnimalProfile({required this.dog});
-
-  final DogModel dog;
+  const AnimalProfile();
 
   @override
   Widget build(BuildContext context) {
+    final dogData = ModalRoute.of(context)!.settings.arguments as DogModel;
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
@@ -34,10 +38,10 @@ class AnimalProfile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Center(
+            Center(
               child: CircleAvatar(
                 radius: 100.0,
-                backgroundImage: NetworkImage('https://g.petango.com/photos/352/1653a7b4-28ec-48f4-863c-d56fe6ce20aa.jpg'),
+                backgroundImage: NetworkImage(dogData.imageURL),
               ),
             ),
             Divider(
@@ -54,7 +58,7 @@ class AnimalProfile extends StatelessWidget {
             ),
             const SizedBox(height: 5.0),
             Text(
-              dog.name,
+              dogData.name,
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 fontWeight: FontWeight.bold,
@@ -73,7 +77,7 @@ class AnimalProfile extends StatelessWidget {
             ),
             const SizedBox(height: 5.0),
             Text(
-              '${dog.age} years',
+              '${dogData.age} years',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 fontWeight: FontWeight.bold,
@@ -92,7 +96,7 @@ class AnimalProfile extends StatelessWidget {
             ),
             const SizedBox(height: 5.0),
             Text(
-              dog.gender,
+              dogData.gender,
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 fontWeight: FontWeight.bold,
@@ -111,7 +115,7 @@ class AnimalProfile extends StatelessWidget {
             ),
             const SizedBox(height: 5.0),
             Text(
-              '${dog.weight} lbs',
+              '${dogData.weight} lbs',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 fontWeight: FontWeight.bold,
