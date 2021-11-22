@@ -23,6 +23,9 @@ class AnimalListTile extends StatelessWidget {
               borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
               child: CachedNetworkImage(
                 imageUrl: dog.imageURL,
+                fit: BoxFit.fitWidth,
+                height: 242,
+                width: MediaQuery.of(context).size.width,
               ),
               // child: Image(
               //   image: NetworkImage(dog.imageURL),
@@ -54,14 +57,14 @@ class AnimalListTile extends StatelessWidget {
                             fontWeight: FontWeight.w800
                         ),
                       ),
-                      Text(
-                        '${dog.weight} lbs',
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
+                      // Text(
+                      //   '${dog.weight} lbs',
+                      //   style: const TextStyle(
+                      //     color: Colors.grey,
+                      //     fontSize: 13,
+                      //     fontWeight: FontWeight.w400,
+                      //   ),
+                      // ),
                     ],
                   ),
                   const SizedBox(height: 3),
